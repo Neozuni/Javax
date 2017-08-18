@@ -11,7 +11,7 @@ public class Employee {
 
 
 	public Employee(String ssn, String name, MyDate birthDate, double salary) {
-		//super();
+		//super(); 부모의 기본 생성자는 무조건 호출
 		this.ssn = ssn;
 		this.name = name;
 		this.birthDate = birthDate;

@@ -13,7 +13,6 @@ public class MyDate {
 	}
 	
 	
-	
 	@Override //메소드를 재정의 하는 오버라이드 기법
 	public String toString() {
 		return year+ "-" +month+ "-" +day;

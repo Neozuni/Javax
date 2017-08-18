@@ -23,8 +23,8 @@ public class Manager extends Employee{
 		this.name = name;
 		this.birthDate = birthDate;
 		this.salary = salary;*/
-		//super(ssn,name,birthDate,salary);
-		super();//부모의 기본 생성자
+		super(ssn,name,birthDate,salary);
+		//super();//부모의 기본 생성자
 		this.dept = dept;
 		
 	}
@@ -39,4 +39,24 @@ public class Manager extends Employee{
 		return super.getDetails()+"\t"+dept;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

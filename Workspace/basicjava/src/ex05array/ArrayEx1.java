@@ -20,7 +20,11 @@ public class ArrayEx1 {//배열의 기초예
 				System.out.println("temp : "+temp);
 			
 		
+		System.out.println(ch[0]);
 		}
+	
+		
+		
 
 	}
 
