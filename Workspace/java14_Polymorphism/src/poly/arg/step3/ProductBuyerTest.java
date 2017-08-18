@@ -1,4 +1,7 @@
-package poly.arg.step2;
+package poly.arg.step3;
+
+import java.util.Vector;
+
 public class ProductBuyerTest {
 	public static void main(String[] args) {
 	/*	TV tv = new TV();
@@ -25,8 +28,6 @@ public class ProductBuyerTest {
 		System.out.println(" 현재 잔액 : "+buyer.money+" 만원");
 		System.out.println(" 현재 포인트 : "+buyer.bonusPoint+" 점");
 		
-		
-		//삭제 ..
 		buyer.refund(audio1);
 		System.out.println(" 현재 잔액 : "+buyer.money+" 만원");
 		System.out.println(" 현재 포인트 : "+buyer.bonusPoint+" 점");
@@ -97,7 +98,7 @@ class ProductBuyer{
 	int money = 1000; //일천만원을 가지고 있음.
 	int bonusPoint = 0; //현재 포인트는 0(구입한 물건이 현재 없다)
 	//구입한 상품들을 저장하는 일종의 보관서
-	Product[ ] items = new Product[10];
+	Vector<Product> items = new Vector<Product>();
 	int index = 0;
 	
 	public void buyProduct(Product p) {
@@ -108,47 +109,44 @@ class ProductBuyer{
 		}
 		money-=p.price;
 		bonusPoint+= p.bonusPoint;
-		items[index++] = p;
+		items.add(p);
 		System.out.println(p+" 를(을) 구입하셨습니다.");
 	}
 	
 	public void refund(Product p) {
-		//환불하고자 하는 pNumber와 같다면 해당 p를 제거
-		for(int i=0; i<items.length; i++) {
-			if(p.getpNumber()==items[i].getpNumber()) {
-				//i번쨰에 해당하는 상품을 뒤에 상품이 계속 덮어쓴다
-				for(int j=i; j<items.length-1; j++) 
-					items[j] = items[j+1];
-				break;
-			}//if
-		}//for
 		
-		//제거됬는지 확인하는 로직
-		for(int k=0; k<items.length; k++) {
-			System.out.println(items[k]);
-		}
-		
+		if(items.remove(p)) {
+		System.out.println("=========================");
 		money += p.price;
 		bonusPoint -= p.bonusPoint;
 		System.out.println(p+" 을(를) 환불처리 하셨습니다. ");
+		} else {
+			System.out.println(p+ "에 해당하는 물건이 없어서 환불이 불가능 합니다. ");
+		}
+		
 	}
 	
-	public void summary() {
+	public void summary() { // vertor 안에 내용을 출력 
 		/*
 		 * for 문을 돌면서 구입한 물건의 총합과 총목록을 출력
 		 */
 		int sum = 0;
 		String itemList = "";
-		for(Product p : items) {
-			if(p==null) break;
-			sum += p.price;
-			itemList += p+" ";
+		if(items.isEmpty()) {//
+			System.out.println("구입하신 물건이 없습니다... ");
+			return;
+		}
+		
+		for(int i=0; i<items.size(); i++) {
+			Product pro = items.get(i);
+			
+			sum += pro.price;
+			itemList += pro +" ";
 		}//for
 		
 		System.out.println("구입한 상품의 총 금액 : "+sum+" 만원입니다.");
 		System.out.println("구입한 상품의 총 목록 : "+itemList+" 입니다.");
-	}
-	
+	}	
 }
 /* 
  * 문제점 
