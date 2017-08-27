@@ -8,7 +8,7 @@ import poly.service.EmployeeService;
 public class EmployeeServiceTest {
 	public static void main(String[] args) {
 		//1. 객체생성...m = 
-		Employee e = new Employee("e123", "아이유", "방배동", 450);
+		//Employee e = new Employee("e123", "아이유", "방배동", 450);
 		Manager m = new Manager("m777", "이상순", "제주", 500, "관리부");
 		Engineer eg1 = new Engineer("eg112", "효리1", "신사동", 400, "Jquery", 230);
 		Engineer eg2 = new Engineer("eg999", "효리2", "제주", 500, "Driver", 50);

@@ -1,41 +1,26 @@
 package com.kosta.vo;
 
-public class Student extends Person {
-	int stuNum;
-	int age;
-	public Student(String name, int phone, String address, int stuNum, int age) {
-		super(name, phone, address);
-		this.stuNum = stuNum;
-		this.age = age;
-	}
-	
-	public Student() {
-		// TODO Auto-generated constructor stub
+
+public class Student extends Person{
+	private int totalAttendDay;
+
+	public Student(String name, String ssn, int age, int salary, int totalAttendDay) {
+		super(name, ssn, age, salary);
+		this.totalAttendDay = totalAttendDay;
 	}
 
-	public int getStuNum() {
-		return stuNum;
+	public int getTotalAttendDay() {
+		return totalAttendDay;
 	}
 
-	public void setStuNum(int stuNum) {
-		this.stuNum = stuNum;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
+	public void setTotalAttendDay(int totalAttendDay) {
+		this.totalAttendDay = totalAttendDay;
 	}
 
 	@Override
 	public String toString() {
-		return super.toString()+"Student [stuNum=" + stuNum + ", age=" + age + "]";
+		return super.toString()+"Student [totalAttendDay=" + totalAttendDay + "]";
 	}
-	
-	
-	
-	
+
 
 }

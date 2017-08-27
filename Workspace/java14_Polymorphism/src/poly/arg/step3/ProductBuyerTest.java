@@ -35,7 +35,7 @@ public class ProductBuyerTest {
 	}
 }
 //super class
-class Product{
+abstract class Product{
 	int price;
 	int bonusPoint;
 	int pNumber;//상품을 구분하는 유니크한 값

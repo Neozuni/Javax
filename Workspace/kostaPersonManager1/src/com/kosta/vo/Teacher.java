@@ -1,47 +1,29 @@
 package com.kosta.vo;
 
-public class Teacher extends Person {
-	
-	int carPeriod;
+public class Teacher extends Person{
+	private int teachPeriod;
 
-	
-	int salary;
-
-
-	public Teacher(String name, int phone, String address, int carPeriod, int salary) {
-		super(name, phone, address);
-		this.carPeriod = carPeriod;
-		this.salary = salary;
+	public Teacher(String name, String ssn, int age, int salary, int teachPeriod) {
+		super(name, ssn, age, salary);
+		this.teachPeriod = teachPeriod;
 	}
 
-
-	public int getCarPeriod() {
-		return carPeriod;
+	public int getTeachPeriod() {
+		return teachPeriod;
 	}
 
-
-	public void setCarPeriod(int carPeriod) {
-		this.carPeriod = carPeriod;
+	public void setTeachPeriod(int teachPeriod) {
+		this.teachPeriod = teachPeriod;
 	}
-
-
-	public int getSalary() {
-		return salary;
-	}
-
-
-	public void setSalary(int salary) {
-		this.salary = salary;
-	}
-
 
 	@Override
 	public String toString() {
-		return super.toString()+"Teacher [carPeriod=" + carPeriod + ", salary=" + salary + "]";
+		return super.toString()+"Teacher [teachPeriod=" + teachPeriod + "]";
 	}
-	
-	
-	
-	
+
+
+
+
+
 
 }

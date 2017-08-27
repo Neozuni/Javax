@@ -1,46 +1,58 @@
 package com.kosta.vo;
 
-public class Person {
-	String name;
-	int phone;
-	String address;
-	int pNumber;
-	
-	public Person(String name, int phone, String address, int pNumber) {
-		super();
-		this.name = name;
-		this.phone = phone;
-		this.address = address;
-		this.pNumber = pNumber;
-	}
+public class Person{
+	private String name;
+	private String ssn;
+	private int age;
+	private int salary;
+
 	public Person() {
 		// TODO Auto-generated constructor stub
 	}
+
+	public Person(String name, String ssn, int age, int salary) {
+		super();
+		this.name = name;
+		this.ssn = ssn;
+		this.age = age;
+		this.salary = salary;
+	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getPhone() {
-		return phone;
+
+	public String getSsn() {
+		return ssn;
 	}
-	public void setPhone(int phone) {
-		this.phone = phone;
+
+	public void setSsn(String ssn) {
+		this.ssn = ssn;
 	}
-	public String getAddress() {
-		return address;
+
+	public int getAge() {
+		return age;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+
+	public void setAge(int age) {
+		this.age = age;
 	}
+
+	public int getSalary() {
+		return salary;
+	}
+
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
+
 	@Override
 	public String toString() {
-		return "Person [name=" + name + ", phone=" + phone + ", address=" + address + "]";
+		return "[name=" + name + ", ssn=" + ssn + ", age=" + age + ", salary=" + salary + "]";
 	}
-	
-	
-	
-	
 
 }

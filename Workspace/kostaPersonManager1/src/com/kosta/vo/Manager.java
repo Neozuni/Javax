@@ -1,45 +1,29 @@
 package com.kosta.vo;
 
-public class Manager extends Person {
-	int empNum;
-	String dept;
-	public Manager(String name, int phone, String address, int empNum, String dept) {
-		super(name, phone, address);
-		this.empNum = empNum;
+public class Manager extends Person{
+	private String dept;
+
+	public Manager(String name, String ssn, int age, int salary, String dept) {
+		super(name, ssn, age, salary);
 		this.dept = dept;
 	}
-	
-	
-	public Manager() {
-		// TODO Auto-generated constructor stub
-	}
-
-
-	public int getEmpNum() {
-		return empNum;
-	}
-
-
-	public void setEmpNum(int empNum) {
-		this.empNum = empNum;
-	}
-
 
 	public String getDept() {
 		return dept;
 	}
 
-
 	public void setDept(String dept) {
 		this.dept = dept;
 	}
 
-
 	@Override
 	public String toString() {
-		return super.toString()+"Manager [empNum=" + empNum + ", dept=" + dept + "]";
+		return super.toString()+"Manager [dept=" + dept + "]";
 	}
-	
-	
+
+
+
+
+
 
 }
