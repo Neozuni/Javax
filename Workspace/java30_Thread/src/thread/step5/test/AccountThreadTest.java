@@ -6,7 +6,7 @@ public class AccountThreadTest {
 		AccountThread act = new AccountThread();
 		Thread t1 = new Thread(act);
 		Thread t2 = new Thread(act);
-		
+
 		t1.start();
 		t2.start();
 	}
