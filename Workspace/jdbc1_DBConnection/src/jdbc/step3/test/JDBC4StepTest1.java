@@ -32,6 +32,7 @@ public class JDBC4StepTest1 {
 		
 		System.out.println("3. ======= Preparedstatment use ======= ");
 		String sql = "insert into member values(?,?,?,?)"; // ??? 처리 하고 컴파일 후에 바인딩 한다 .. 
+		
 		PreparedStatement ps = conn.prepareStatement(sql);
 		System.out.println("3. Preparedstatment .....success!!!");
 		
@@ -41,7 +42,13 @@ public class JDBC4StepTest1 {
 		ps.setString(4,"seoul");
 		
 		//System.out.println(ps.executeUpdate()+" row Insert ok !!"); //한번 사용후 계속 실행하면 무결성 오류 발생함 
-		
+		/*
+		 * INSERT
+		 * DELETE
+		 * UPDATE
+		 * SELECT
+		 * 
+		 */
 		//위에는 모두 열어서 사용함 연순서 반대로 닫아줌 
 		ps.close();
 		conn.close();

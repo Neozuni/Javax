@@ -47,15 +47,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import config.OracleInfo;
-
 public class JDBC4StepTest1 {
+	public static final String DRIVER_NAME = "oracle.jdbc.driver.OracleDriver";
+	public static final String URL ="jdbc:oracle:thin:@127.0.0.1:1521:XE";
+	public static final String USER = "hr";
+	public static final String PASS = "hr";
 	
 	JDBC4StepTest1()throws ClassNotFoundException, SQLException{
-		Class.forName(OracleInfo.DRIVER);
+		Class.forName(DRIVER_NAME);
 		System.out.println("Driver Loading.....Success!!");
 		
-		Connection conn = DriverManager.getConnection(OracleInfo.URL, OracleInfo.USER, OracleInfo.PASS);
+		Connection conn = DriverManager.getConnection(URL, USER, PASS);
 		System.out.println("DBConnection.....success!!!");
 		
 		/*
