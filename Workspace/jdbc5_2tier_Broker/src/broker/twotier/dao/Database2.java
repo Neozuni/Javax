@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.naming.spi.DirStateFactory.Result;
+
 import broker.twotier.exception.DuplicateSSNException;
 import broker.twotier.exception.InvalidTransactionException;
 import broker.twotier.exception.RecordNotFoundException;
@@ -139,21 +141,110 @@ public class Database2{
 		
 	}
 	
-public static void main(String[ ] args) throws Exception{
+	public Vector<SharesRec> getPortfolio(String ssn)throws SQLException{
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		Vector<SharesRec> v = new Vector<SharesRec>();
+		
+		try {
+			conn = getConnect();
+			String query =
+					"select * from shares where ssn=? ";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, ssn);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				v.add(new SharesRec(ssn,
+											rs.getString("symbol"),
+											rs.getInt("quantity")));
+			}
+			
+		} finally {
+			closeAll(rs,ps, conn);
+		}
+		return v;
+	}
+	
+	public CustomerRec getCutomer(String ssn)throws SQLException{
+		Connection conn=null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		CustomerRec cr = null;
+		
+		try {
+			conn = getConnect();
+			String query = 
+					"select * from customer where ssn=?";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, ssn);
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				cr = new CustomerRec(ssn, 
+						rs.getString("cust_name"),
+						rs.getString("address"));
+				
+			}
+			cr.setPortfolio(getPortfolio(ssn));
+		} finally {
+			closeAll(rs,ps, conn);
+			
+		}
+		return cr;
+	}
+
+	public ArrayList<CustomerRec> gerAllcustomers()throws SQLException{
+		
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<CustomerRec> list = new ArrayList<CustomerRec>();
+		
+		try {
+			conn= getConnect();
+			String query =
+					"select * from customer";
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				list.add(new CustomerRec(
+									rs.getString("ssn"),
+									rs.getString("cust_name"), 
+									rs.getString("address"),
+							getPortfolio(rs.getString("ssn"))));
+			}
+			
+		} finally {
+			closeAll(rs,ps, conn);
+			
+		}
+		return list;
+				
+	}
+	
+	
+	
+	public static void main(String[ ] args) throws Exception{
 	Database2 db = new Database2("192.168.36.10");
 	//System.out.println(db.isExists("111-999"));
 	try {
 		//db.addCustomer(new CustomerRec("000-000", "neox", "Songpa"));
 		//db.deleteCustomer("000-000");
-		db.updateCustomer(new CustomerRec("989-96", "하바리1", "서현동1"));
-	} catch (RecordNotFoundException e) {
-	System.out.println("등록하려는 고객이 no ");
+		//db.updateCustomer(new CustomerRec("989-96", "하바리1", "서현동1"));
+		//db.buyShares("000-000", "JDK", 100);
+		System.out.println(db.gerAllcustomers());
+	} catch (SQLException e) {
+	System.out.println("   ");
 	}
 	
 	
 	
 	//System.out.println(db.getCustomer("777-777"));
-	//db.buyShares("000-000", "JDK", 100);
+	
 	//db.sellShares("111-110", "DUE", 20);
 	//}
 
